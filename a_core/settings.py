@@ -111,15 +111,12 @@ CHANNEL_LAYERS = {
 
 DATABASES = {
     'default': {
-        'ENGINE': env('DB_ENGINE'),
-        "NAME": env('DB_NAME'),
-        "USER": env('DB_USER'),
-        "PASSWORD": env('DB_PASS'),
-        "HOST": env('DB_HOST'),
-        "PORT": env('DB_PORT'),
-        "OPTIONS": {
-            'options': '-c search_path=' + env('DB_SCHEMA')
-        }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'lagot',
+        'USER': 'postgres',
+        'PASSWORD': '123',
+        'HOST': 'localhost',  # Replace with your PostgreSQL server's address if necessary
+        'PORT': '',          # Leave empty to use the default PostgreSQL port (usually 5432)
     }
 }
 
