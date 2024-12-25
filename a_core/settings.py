@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import environ
+
+# Initialise .env
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -106,8 +111,15 @@ CHANNEL_LAYERS = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': env('DB_ENGINE'),
+        "NAME": env('DB_NAME'),
+        "USER": env('DB_USER'),
+        "PASSWORD": env('DB_PASS'),
+        "HOST": env('DB_HOST'),
+        "PORT": env('DB_PORT'),
+        "OPTIONS": {
+            'options': '-c search_path=' + env('DB_SCHEMA')
+        }
     }
 }
 
